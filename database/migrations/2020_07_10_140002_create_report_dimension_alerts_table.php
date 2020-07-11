@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 use App\Traits\BaseMigrationTrait;
 
-class CreateReportDimensionAccentsTable extends Migration
+class CreateReportDimensionAlertsTable extends Migration
 {
     use BaseMigrationTrait;
 
-    public $table_name = 'report_dimension_accents';
-    public $table_comment = 'Visibility accentuation for a Report Dimension';
+    public $table_name = 'report_dimension_alerts';
+    public $table_comment = 'Alert for a Report Dimension';
 
     /**
      * Run the migrations.

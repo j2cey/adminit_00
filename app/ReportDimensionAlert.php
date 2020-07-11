@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ReportDimensionAccent
+ * Class ReportDimensionAlert
  * @package App
  *
  * @property integer $id
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  */
-class ReportDimensionAccent extends BaseModel
+class ReportDimensionAlert extends Model
 {
     public function report_dimension() {
         return $this->belongsTo('App\ReportDimension');
