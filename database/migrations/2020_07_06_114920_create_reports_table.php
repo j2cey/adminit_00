@@ -4,10 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+use App\Traits\BaseMigrationTrait;
+
+class CreateReportsTable extends Migration
 {
-    public $table_name = 'users';
-    public $table_comment = 'user accounts of the system.';
+    use BaseMigrationTrait;
+
+    public $table_name = 'reports';
+    public $table_comment = 'list of reports.';
 
     /**
      * Run the migrations.
@@ -18,14 +22,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+
+            $table->string('title')->comment('report title');
+
+            $table->foreignId('report_type_id')->nullable()
+                ->comment('report type reference')
+                ->constrained()->onDelete('set null');
 
             $table->baseFields();
         });
+        $this->setTableComment($this->table_name,$this->table_comment);
     }
 
     /**
@@ -37,6 +43,7 @@ class CreateUsersTable extends Migration
     {
         Schema::table($this->table_name, function (Blueprint $table) {
             $table->dropBaseForeigns();
+            $table->dropForeign(['report_type_id']);
         });
         Schema::dropIfExists($this->table_name);
     }

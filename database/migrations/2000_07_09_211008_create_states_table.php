@@ -4,10 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+use App\Traits\BaseMigrationTrait;
+
+class CreateStatesTable extends Migration
 {
-    public $table_name = 'users';
-    public $table_comment = 'user accounts of the system.';
+    use BaseMigrationTrait;
+
+    public $table_name = 'states';
+    public $table_comment = 'state of objects in the system.';
 
     /**
      * Run the migrations.
@@ -18,14 +22,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->uuid('uuid');
 
-            $table->baseFields();
+            $table->string('name')->comment('state name');
+            $table->boolean('is_default')->default(false)->comment('determine whether is the default one.');
+
+            $table->timestamps();
         });
+        $this->setTableComment($this->table_name,$this->table_comment);
     }
 
     /**
@@ -35,9 +39,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table($this->table_name, function (Blueprint $table) {
-            $table->dropBaseForeigns();
-        });
         Schema::dropIfExists($this->table_name);
     }
 }
