@@ -39,6 +39,8 @@ class CreateReportDimensionValuesTable extends Migration
                 ->comment('trend value reference')
                 ->constrained('report_values')->onDelete('set null');
 
+            $table->integer('times')->nullable()->comment('result times (in case of same result)');
+
             $table->baseFields();
         });
         $this->setTableComment($this->table_name,$this->table_comment);

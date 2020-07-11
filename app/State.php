@@ -12,6 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @property integer $id
  * @property string $uuid
+ * @property string $code
  * @property string $name
  * @property bool $is_default
  * @property string|null $tags
@@ -29,5 +30,15 @@ class State extends Model
     public function scopeDefault($query, $exclude = []) {
         return $query
             ->where('is_default', true)->whereNotIn('id', $exclude);
+    }
+
+    public function scopeActive($query) {
+        return $query
+            ->where('code', 'active');
+    }
+
+    public function scopeInactive($query) {
+        return $query
+            ->where('code', 'inactive');
     }
 }

@@ -24,6 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
+            $table->string('image')->nullable()->comment('user avatar');
+
+            $table->boolean('is_local')->default(false)->comment('determine whether the account is local');
+            $table->boolean('is_ldap')->default(false)->comment('determine whether the account is ldap');
+
             $table->baseFields();
         });
     }

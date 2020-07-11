@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer|null $report_value_id
  * @property integer|null $report_trend_id
  * @property integer|null $trend_value_id
+ * @property integer|null $times
  *
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at

@@ -25,6 +25,8 @@ class CreateStatesTable extends Migration
             $table->uuid('uuid');
 
             $table->string('name')->comment('state name');
+            $table->string('code', 100)->unique()->comment('state code');
+
             $table->boolean('is_default')->default(false)->comment('determine whether is the default one.');
 
             $table->timestamps();

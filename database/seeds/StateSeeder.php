@@ -14,10 +14,10 @@ class StateSeeder extends Seeder
     {
         $states = [
             [
-                'name' => "active",'is_default' => 1
+                'name' => "active", 'code' => "active",'is_default' => 1
             ],
             [
-                'name' => "inactive",'is_default' => 0
+                'name' => "inactive", 'code' => "inactive",'is_default' => 0
             ]
         ];
         foreach ($states as $state) {

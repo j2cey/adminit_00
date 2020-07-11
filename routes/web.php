@@ -15,4 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware('auth');
+
+Route::resource('reports', 'ReportController');
+Route::resource('profiles', 'ProfileController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
